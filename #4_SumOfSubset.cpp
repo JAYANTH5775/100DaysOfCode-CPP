@@ -1,50 +1,38 @@
-#include<bits/stdc++.h> 
- using namespace std; 
-  int main()
-  {
-  	 char res[1000];
+#include <iostream>
+#include <vector>
 
-  	 bool b = false;
-  	  int arr[6
-  	  	]={2,3,6,12,13,1};
+using namespace std;
 
-  	  int sum ; 
+int main() {
+    vector<int> arr = {2, 3, 6, 12, 13, 1};
+    int target = 18;
 
-  	  for (int i =0;i<32;i++)
-  	  {
-  	  	itoa(i,res,2);
-  	  	
-  	  	cout<<res<<endl;
-  	  	sum=0; 
+    bool possible = false;
 
-  	  	for(int j=0;j<5;j++)
-  	  	{
-  	  		if(res[j] == '1')
-  	  		{
-  	  			sum+=arr[j];
+    int n = static_cast<int>(arr.size());
+    for (int mask = 0; mask < (1 << n); mask++) {
+        int sum = 0;
+        cout << "Subset: { ";
 
-  	  		}
-  	  	
-  	  }
+        for (int i = 0; i < n; i++) {
+            if (mask & (1 << i)) {
+                sum += arr[i];
+                cout << arr[i] << ' ';
+            }
+        }
 
-  	  cout<<"sum is :"<<sum<<endl;
-  	  if(sum==18)
-{
-	b=true; 
-	break;
+        cout << "} -> Sum = " << sum << '\n';
 
+        if (sum == target) {
+            possible = true;
+        }
+    }
+
+    if (possible) {
+        cout << "Target sum " << target << " is possible.\n";
+    } else {
+        cout << "Target sum " << target << " is not possible.\n";
+    }
+
+    return 0;
 }
-
-}
-
-if(b)
-	cout<<"sum is possible ";
- else
- 	cout<<"sum is not possible";
-
- 
-
-  	 return 0 ; 
-
-
-  }
