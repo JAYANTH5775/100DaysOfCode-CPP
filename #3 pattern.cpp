@@ -1,32 +1,32 @@
-#include<bits/stdc++.h> 
+#include <iostream>
 
-using namespace  std; 
+using namespace std;
 
-int main()
-{
-	int n ; 
-  cout<<"enter the number for with u want to generate the pattern"; 
-  cin>>n; 
+int main() {
+    int n;
+    cout << "Enter n for star pattern: ";
+    cin >> n;
 
-  for(int i =0;i<=(2*n-1);i++)
-  {
-  	if(i<=n)
-  	{
-  	for(int j = 0 ;j<i;j++)
-  	{
-  		cout<<"*";
-  	} //j  for loop 
-  }// if ;loop
+    if (n <= 0) {
+        cout << "Please enter a positive number.\n";
+        return 0;
+    }
 
-  else
-  {
-  	for(int j =0;j<=(2*n-i);j++)
-  	{
+    // Increasing part
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < i; j++) {
+            cout << '*';
+        }
+        cout << '\n';
+    }
 
-  	cout<<"*";
-  }
-}
+    // Decreasing part
+    for (int i = n - 1; i >= 1; i--) {
+        for (int j = 0; j < i; j++) {
+            cout << '*';
+        }
+        cout << '\n';
+    }
 
-	return 0 ;
-}
+    return 0;
 }

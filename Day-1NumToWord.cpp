@@ -1,43 +1,49 @@
-#include<bits/std++.h>
-using namespace std; 
- 
+#include <iostream>
+#include <string>
 
- int main()
- {
-string arr1[20] ={ "zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelev","thirteen","fourteen","fifteen","sixteen","seventeen"
-,"eighteen","nineteen"};
+using namespace std;
 
-  string arr2[10
-  	]={"twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety","hundred"};
-int num;
-  while(1)
-  {
-  	cout<<"enter the number from 1 -100 to which u want to convert to the word-format\n\n";
-  	cin>>num;
-  	if(num<19)
-  		cout<<arr1[num];
-  	else if (num>100 && num<0)
-  		cout<<"invalid entry";
-  	else if (num%10==0)
-  	{
-  		cout<<arr2[num];
-  	}
-  	else {
-  		 int fst =((num/10)-2);
-  		 int lst = num%10;
-  		 cout<<arr2[fst]<<" "<<arr2[lst];
+string numberToWords(int num) {
+    const string ones[] = {
+        "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+    };
+    const string tens[] = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
 
-  	}
-  cout<<"do u want to enter the some more  numbers ";
-  int x; 
-  cin>>x;
-   if(!x)
-   	break;
+    if (num < 0 || num > 100) {
+        return "invalid entry";
+    }
+    if (num < 20) {
+        return ones[num];
+    }
+    if (num == 100) {
+        return "one hundred";
+    }
 
-  	}
-  }
- 
- 
- //number that can be entered 10 20 30 
- //0-19
- //21 36 47 89 28 random number
+    int tenPart = num / 10;
+    int onePart = num % 10;
+
+    if (onePart == 0) {
+        return tens[tenPart];
+    }
+    return tens[tenPart] + " " + ones[onePart];
+}
+
+int main() {
+    while (true) {
+        int num;
+        cout << "Enter a number from 0 to 100: ";
+        cin >> num;
+
+        cout << numberToWords(num) << '\n';
+
+        char choice;
+        cout << "Do you want to convert another number? (y/n): ";
+        cin >> choice;
+        if (choice != 'y' && choice != 'Y') {
+            break;
+        }
+    }
+
+    return 0;
+}
